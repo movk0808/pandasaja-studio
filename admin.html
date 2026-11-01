@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>판다앤사자 관리자</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* 판다앤사자 관리자: 이번 달 문의·상태별 숫자만 관리 (고객 정보는 저장하지 않음) */
+:root{--paper:#F2F3F0;--card:#FFFFFF;--ink:#0D0E0E;--ink-2:#5B605C;--line:#DADDD7;--saja:#F4A52A;--saja-ink:#1A1100;--ok:#1F8A4C;--bad:#C2410C;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--paper:#0B0C0C;--card:#151717;--ink:#EEF0EB;--ink-2:#A3A8A4;--line:#2A2D2C;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:15px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:32px max(16px,env(safe-area-inset-right,0px)) 64px max(16px,env(safe-area-inset-left,0px));display:grid;gap:20px}
+h1{margin:0;font-size:24px;letter-spacing:-.02em}
+h2{margin:0 0 12px;font-size:16px}
+.sub{color:var(--ink-2);font-size:13px;margin:4px 0 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+select,input{font:inherit;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:9px 14px;min-height:40px}
+button.primary{background:var(--saja);color:var(--saja-ink);border-color:var(--saja);font-weight:700}
+button:disabled{opacity:.5;cursor:not-allowed}
+.big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big b{font-size:44px;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.meter{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin-top:12px}
+.meter i{display:block;height:100%;background:var(--saja);width:0;transition:width .4s}
+.rows{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px}
+.row small{display:block;color:var(--ink-2);font-size:12.5px}
+.step{display:flex;align-items:center;gap:8px}
+.step button{width:40px;padding:0;font-size:18px}
+.step output{min-width:36px;text-align:center;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.save{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.msg{font-size:13.5px}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{text-align:right;padding:8px 6px;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+.tbl{overflow-x:auto}
+details summary{cursor:pointer;font-weight:600}
+.field{display:grid;gap:6px;margin-top:12px}
+.field label{font-size:13px;color:var(--ink-2)}
+.help{font-size:13px;color:var(--ink-2);margin:8px 0 0}
+.help a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1>판다앤사자 관리자</h1>
+      <p class="sub">이번 달 몇 팀이 왔고 어떻게 진행됐는지만 기록해요. 저장하면 1~2분 뒤 사이트 하단 바에 반영돼요.</p>
+    </div>
+    <select id="month" aria-label="월 선택"></select>
+  </div>
+
+  <section class="card">
+    <h2>남은 자리</h2>
+    <div class="big"><b id="left">–</b><span id="left-note" class="sub"></span></div>
+    <div class="meter"><i id="fill"></i></div>
+  </section>
+
+  <section class="card">
+    <h2>이번 달 현황</h2>
+    <div class="rows" id="rows"></div>
+  </section>
+
+  <section class="card save">
+    <button class="primary" id="save" type="button">저장하고 사이트에 반영</button>
+    <span class="msg" id="msg" role="status"></span>
+  </section>
+
+  <section class="card">
+    <h2>월별 기록</h2>
+    <div class="tbl"><table><thead><tr><th>월</th><th>문의</th><th>상담 중</th><th>계약</th><th>완료</th><th>남은 자리</th></tr></thead><tbody id="hist"></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <details id="setup">
+      <summary>GitHub 연결 설정 (처음 한 번)</summary>
+      <div class="field"><label for="repo">저장소</label><input id="repo" value="movk0808/pandasaja-studio"></div>
+      <div class="field"><label for="cap">한 달 최대 팀 수</label><input id="cap" type="number" min="1" max="200" value="30"></div>
+      <div class="field"><label for="token">GitHub 토큰 (이 기기에만 저장돼요)</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_..."></div>
+      <div class="save" style="margin-top:12px"><button type="button" id="connect">연결하기</button><button type="button" id="forget">이 기기에서 토큰 지우기</button></div>
+      <p class="help">토큰 만들기: <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> → Repository access에서 <b>pandasaja-studio</b>만 선택 → Permissions의 <b>Contents</b>를 <b>Read and write</b>로 → 생성 후 붙여넣기. 토큰은 저장소에 올라가지 않고 이 브라우저에만 남아요.</p>
+    </details>
+  </section>
+</div>
+
+<script>
+(function () {
+  var FILE = "data/spots.json";
+  var STATES = [
+    ["inquiries", "문의 들어옴", "새 문의가 오면 +1"],
+    ["consulting", "상담 중", "견적·자료를 주고받는 중"],
+    ["contracted", "계약", "제작 확정 → 남은 자리에서 빠져요"],
+    ["done", "완료", "납품까지 끝난 작업 (남은 자리에 포함 안 됨)"]
+  ];
+  var data = null, sha = null;
+  var $ = function (id) { return document.getElementById(id); };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} }
+  };
+
+  function nowKey() {
+    var p = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit" }).formatToParts(new Date());
+    return p.find(function (x) { return x.type === "year"; }).value + "-" + p.find(function (x) { return x.type === "month"; }).value;
+  }
+  function month() { return $("month").value; }
+  function cur() {
+    var k = month();
+    if (!data.months[k]) data.months[k] = { inquiries: 0, consulting: 0, contracted: 0, done: 0 };
+    return data.months[k];
+  }
+  function leftOf(m) { return Math.max(0, data.capacity - (m.contracted || 0) - (m.done || 0)); }
+  function say(t, kind) { $("msg").textContent = t; $("msg").className = "msg " + (kind || ""); }
+
+  function render() {
+    var keys = Object.keys(data.months);
+    if (keys.indexOf(nowKey()) < 0) keys.push(nowKey());
+    keys.sort().reverse();
+    var sel = month() || nowKey();
+    $("month").innerHTML = keys.map(function (k) { return '<option value="' + k + '">' + k.replace("-", "년 ") + "월</option>"; }).join("");
+    $("month").value = sel;
+    var m = cur(), left = leftOf(m);
+    $("left").textContent = left + " / " + data.capacity;
+    $("left-note").textContent = left === 0 ? "이번 달 마감 (사이트에 '다음 달 예약'으로 표시돼요)" : "계약 " + (m.contracted || 0) + " · 완료 " + (m.done || 0);
+    $("fill").style.width = ((data.capacity - left) / data.capacity * 100) + "%";
+    $("rows").innerHTML = STATES.map(function (s) {
+      return '<div class="row"><div><b>' + s[1] + "</b><small>" + s[2] + '</small></div><div class="step">' +
+        '<button type="button" data-k="' + s[0] + '" data-d="-1" aria-label="' + s[1] + ' 1 줄이기">−</button>' +
+        "<output>" + (m[s[0]] || 0) + "</output>" +
+        '<button type="button" data-k="' + s[0] + '" data-d="1" aria-label="' + s[1] + ' 1 올리기">+</button></div></div>';
+    }).join("");
+    $("hist").innerHTML = Object.keys(data.months).sort().reverse().map(function (k) {
+      var x = data.months[k];
+      return "<tr><td>" + k + "</td><td>" + (x.inquiries || 0) + "</td><td>" + (x.consulting || 0) + "</td><td>" + (x.contracted || 0) + "</td><td>" + (x.done || 0) + "</td><td>" + leftOf(x) + "</td></tr>";
+    }).join("");
+    $("cap").value = data.capacity;
+    $("save").disabled = !store.get("ps-token");
+    if (!store.get("ps-token")) say("저장하려면 아래 'GitHub 연결 설정'에서 토큰을 연결해 주세요. (지금은 보기만 가능)");
+  }
+
+  $("rows").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-k]");
+    if (!b) return;
+    var m = cur(), k = b.dataset.k;
+    m[k] = Math.max(0, (m[k] || 0) + Number(b.dataset.d));
+    render();
+    say("저장 전이에요. '저장하고 사이트에 반영'을 눌러 주세요.");
+  });
+  $("month").addEventListener("change", render);
+  $("cap").addEventListener("change", function () { data.capacity = Math.max(1, Number($("cap").value) || 30); render(); });
+
+  function api(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({ "Accept": "application/vnd.github+json", "Authorization": "Bearer " + store.get("ps-token") }, opts.headers || {});
+    return fetch("https://api.github.com/repos/" + (store.get("ps-repo") || $("repo").value) + path, opts);
+  }
+  function fromB64(s) { return decodeURIComponent(escape(atob(s.replace(/\n/g, "")))); }
+  function toB64(s) { return btoa(unescape(encodeURIComponent(s))); }
+
+  function load() {
+    if (store.get("ps-token")) {
+      return api("/contents/" + FILE + "?ref=main").then(function (r) {
+        if (!r.ok) throw new Error(r.status === 401 ? "토큰이 올바르지 않아요." : r.status === 404 ? "저장소나 파일을 찾지 못했어요." : "GitHub 응답 " + r.status);
+        return r.json();
+      }).then(function (j) { sha = j.sha; data = JSON.parse(fromB64(j.content)); say("GitHub에 연결됐어요.", "ok"); });
+    }
+    return fetch(FILE, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { data = j; });
+  }
+
+  $("save").addEventListener("click", function () {
+    var btn = this;
+    btn.disabled = true; say("저장 중…");
+    data.updated = new Date().toISOString().slice(0, 10);
+    var body = JSON.stringify(data, null, 2) + "\n";
+    api("/contents/" + FILE, {
+      method: "PUT",
+      body: JSON.stringify({ message: "현황 업데이트: " + month(), content: toB64(body), sha: sha, branch: "main" })
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) throw new Error(r.status === 409 ? "다른 곳에서 먼저 수정됐어요. 새로고침 후 다시 해주세요." : (j.message || "저장 실패 " + r.status));
+        sha = j.content.sha;
+        say("저장됐어요. 1~2분 뒤 사이트에 반영돼요.", "ok");
+      });
+    }).catch(function (e) { say(e.message, "bad"); }).then(function () { btn.disabled = false; });
+  });
+
+  $("connect").addEventListener("click", function () {
+    if (!$("token").value.trim()) { say("토큰을 붙여넣어 주세요.", "bad"); return; }
+    store.set("ps-token", $("token").value.trim());
+    store.set("ps-repo", $("repo").value.trim());
+    $("token").value = "";
+    load().then(render).catch(function (e) { store.set("ps-token", null); say(e.message, "bad"); render(); });
+  });
+  $("forget").addEventListener("click", function () { store.set("ps-token", null); say("이 기기에서 토큰을 지웠어요."); render(); });
+
+  if (store.get("ps-repo")) $("repo").value = store.get("ps-repo");
+  load().catch(function (e) { say(e.message, "bad"); return fetch(FILE).then(function (r) { return r.json(); }).then(function (j) { data = j; }); })
+    .then(function () { if (!data) data = { capacity: 30, months: {} }; $("month").innerHTML = '<option value="' + nowKey() + '"></option>'; render(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,917 @@
+<title>Panda &amp; Saja Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Brand websites and product pages for small brands, in English, Korean and Japanese.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+JP:wght@500&family=Noto+Serif+KR:wght@500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Nanum+Myeongjo:wght@400;700&family=Shippori+Mincho:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: 판다(먹색 무대)와 사자(앰버 빛). 영화 같은 전면 비주얼로 열고, 실제로 작동하는 브랜드 홈페이지 4개를 PC·휴대폰 화면으로 증명한다 */
+:root{
+  --paper:#F2F3F0; --paper-2:#E6E8E3; --ink:#0D0E0E; --ink-2:#555A56; --line:#D2D5CF;
+  --saja:#F4A52A; --saja-ink:#1A1100;
+  --band:#0C0D0D; --band-2:#171919; --band-ink:#F0F1EC; --band-dim:#9CA19D; --band-line:#2A2D2C;
+  --cjk:"Noto Sans KR"; --cjk-serif:"Noto Serif KR";
+  --f-display:"Bricolage Grotesque", var(--cjk), system-ui, sans-serif;
+  --f-serif:"Instrument Serif", var(--cjk-serif), Georgia, serif;
+  --f-body:"Instrument Sans", var(--cjk), system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, monospace;
+  --r:18px; --wrap:1240px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0B0C0C; --paper-2:#151717; --ink:#EEF0EB; --ink-2:#A3A8A4; --line:#272A29;
+  --band:#141616; --band-2:#1D2020; --band-line:#2F3332; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0B0C0C; --paper-2:#151717; --ink:#EEF0EB; --ink-2:#A3A8A4; --line:#272A29;
+  --band:#141616; --band-2:#1D2020; --band-line:#2F3332; color-scheme:dark}
+html:lang(ja){--cjk:"Noto Sans JP"; --cjk-serif:"Noto Serif JP"}
+html:lang(ko){--f-body:var(--cjk), system-ui, sans-serif}
+html:lang(ja){--f-body:var(--cjk), system-ui, sans-serif}
+html:lang(ko){word-break:keep-all}
+html:lang(ja){line-break:strict}
+html:lang(ja) :is(h1,h2,h3,p,li,summary){word-break:auto-phrase}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+h1,h2,h3,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--saja);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:10px}
+html:not(:lang(en)) .kicker{letter-spacing:.04em}
+.kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--saja)}
+.h2{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,5vw,66px);line-height:1.05;letter-spacing:-.04em;text-wrap:balance}
+html:lang(ko) .h2{line-height:1.15}
+html:lang(ja) .h2{letter-spacing:-.02em;line-height:1.25;font-size:clamp(28px,4.2vw,54px)}
+.lead{font-size:clamp(16px,1.4vw,18px);color:var(--ink-2);max-width:38em}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;border:1.5px solid transparent;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;transition:transform .2s ease, background .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-saja{background:var(--saja);color:var(--saja-ink)}
+.btn-line{border-color:currentColor;background:transparent}
+.arr{font-family:var(--f-mono)}
+section{scroll-margin-top:72px}
+.band{background:var(--band);color:var(--band-ink)}
+.band .kicker{color:var(--band-dim)}
+.band .lead{color:var(--band-dim)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--band) 78%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--band-ink);border-bottom:1px solid color-mix(in srgb,var(--band-line) 70%,transparent)}
+.nav .wrap{display:flex;align-items:center;gap:20px;min-height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:19px;letter-spacing:-.03em;white-space:nowrap}
+.logo svg{width:30px;height:30px;flex:none}
+.nav-links{display:flex;gap:26px;margin-left:auto;font-size:15px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--band-dim)}
+.nav-links a:hover{color:var(--band-ink)}
+.lang{display:flex;border:1px solid var(--band-line);border-radius:999px;padding:3px;gap:2px;flex:none}
+.lang button{border:0;background:transparent;font-family:var(--f-mono);font-size:12px;padding:6px 10px;border-radius:999px;cursor:pointer;color:var(--band-dim);min-width:36px;min-height:30px}
+.lang button[aria-pressed="true"]{background:var(--band-ink);color:var(--band)}
+.nav .btn{min-height:42px;padding:0 18px;font-size:14px}
+@media (max-width:960px){.nav-links{display:none}.lang{margin-left:auto}}
+@media (max-width:520px){.nav .btn{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:min(86vh,860px);display:grid;align-items:end;overflow:hidden;background:#0c0b0a;color:#F4F2EC;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-2}
+/* 메인 시퀀스: 큰 장면 여러 장이 천천히 확대되며 교차 전환 (GIF 대신) */
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;opacity:0;transform-origin:72% 55%;transition:opacity 1.8s ease}
+.hero-media img.on{opacity:1;animation:drift 9s ease-out forwards}
+@media (max-width:700px){.hero-media img{object-position:78% 50%}}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(255,206,140,0) 30%,rgba(255,206,140,.16) 45%,rgba(255,206,140,0) 60%);background-size:250% 100%;animation:sweep 9s ease-in-out infinite;mix-blend-mode:screen}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,9,8,.86) 0%,rgba(10,9,8,.55) 42%,rgba(10,9,8,.05) 75%),linear-gradient(0deg,rgba(10,9,8,.7) 0%,transparent 40%)}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.1) translateX(-1.2%)}}
+@keyframes sweep{0%{background-position:120% 0}100%{background-position:-60% 0}}
+@media (prefers-reduced-motion:reduce){.hero-media img,.hero-media::after{animation:none}}
+.hero .wrap{width:100%;padding-block:120px 56px;display:grid;gap:28px}
+.hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(46px,7.6vw,118px);line-height:.98;letter-spacing:-.05em;max-width:12ch;text-wrap:balance}
+html:lang(ko) .hero h1{line-height:1.1;letter-spacing:-.045em;max-width:13ch}
+html:lang(ja) .hero h1{font-size:clamp(38px,6vw,92px);line-height:1.18;letter-spacing:-.03em;max-width:14ch}
+.hero h1 em{font-family:var(--f-serif);font-style:italic;font-weight:400;color:var(--saja);letter-spacing:-.02em}
+html:not(:lang(en)) .hero h1 em{font-style:normal;font-weight:500}
+.hero .lead{color:#CFCCC4;max-width:34em;font-size:clamp(17px,1.5vw,20px)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero .btn-line{color:#F4F2EC}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}
+.hero-pills li{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;padding:7px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#E2DFD7;background:rgba(0,0,0,.25);backdrop-filter:blur(6px)}
+.hero-pills li:first-child{background:var(--saja);color:var(--saja-ink);border-color:var(--saja)}
+@media (max-width:700px){.hero{min-height:640px}.hero::before{background:linear-gradient(0deg,rgba(10,9,8,.92) 15%,rgba(10,9,8,.55) 55%,rgba(10,9,8,.25) 100%)}}
+
+/* ticker */
+.ticker{background:var(--saja);color:var(--saja-ink);overflow:hidden}
+.ticker-track{display:flex;width:max-content;animation:tick 40s linear infinite}
+.ticker ul{display:flex;padding:14px 0}
+.ticker li{font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:-.02em;white-space:nowrap;padding:0 22px;display:flex;align-items:center;gap:44px}
+.ticker li::after{content:"✳";font-size:16px}
+@keyframes tick{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+
+/* showcase */
+.sc .wrap{padding-block:110px;display:grid;gap:40px}
+.sc-head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end}
+.sc-head > div{display:grid;gap:20px;min-width:0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:transparent;border-radius:999px;padding:10px 16px 10px 10px;cursor:pointer;font-weight:600;font-size:15px;color:var(--ink-2);min-height:48px}
+.tab b{font-family:var(--f-display);color:var(--ink);letter-spacing:-.01em}
+.tab i{width:26px;height:26px;border-radius:50%;flex:none}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab[aria-selected="true"] b{color:var(--paper)}
+.stage{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
+.browser{border-radius:16px;overflow:hidden;background:var(--band-2);border:1px solid var(--line);box-shadow:0 40px 80px -40px rgba(0,0,0,.45);min-width:0}
+.browser-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--paper-2);border-bottom:1px solid var(--line)}
+.browser-bar i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.browser-bar span{margin-left:10px;flex:1;max-width:340px;font-family:var(--f-mono);font-size:12px;color:var(--ink-2);background:var(--paper);border-radius:8px;padding:4px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.screen{container-type:inline-size;overflow:hidden;position:relative}
+.browser .screen{height:clamp(380px,44vw,580px)}
+.phone{width:262px;height:560px;border-radius:42px;background:#050505;padding:10px;box-shadow:0 30px 60px -24px rgba(0,0,0,.55),inset 0 0 0 1.5px #2c2f2f;position:relative;flex:none}
+.phone::after{content:"";position:absolute;top:18px;left:50%;translate:-50% 0;width:74px;height:20px;border-radius:20px;background:#050505;z-index:5}
+.phone .screen{height:100%;border-radius:33px;background:#fff}
+.phone-cap{font-family:var(--f-mono);font-size:11px;color:var(--ink-2);text-align:center;margin-top:12px;letter-spacing:.06em}
+.sc-foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline}
+.sc-style{font-family:var(--f-display);font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;max-width:40em}
+.sc-note{font-size:13px;color:var(--ink-2)}
+@media (max-width:960px){.sc-head{grid-template-columns:1fr}.stage{grid-template-columns:1fr;justify-items:center}.browser{width:100%}}
+@media (max-width:620px){.browser{display:none}.sc .wrap{padding-block:72px}}
+
+/* mini sites (container queries: same markup, desktop + phone) */
+.ms{position:absolute;inset:0;overflow:hidden;font-size:clamp(10px,1.5cqi,15px)}
+.ms .mnav{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:3.2cqi 4cqi}
+.ms .mnav ul{display:flex;gap:2.6cqi;font-size:max(10px,1.25cqi)}
+@container (max-width:420px){.ms .mnav{padding:44px 18px 12px}.ms .mnav ul{display:none}}
+/* NORA */
+/* NORA — 어두운 무대 위 제품 사진을 화면 전체에, 제목은 위쪽 빈 공간에 */
+.ms-nora{background:#070707;color:#F5F5F7;font-family:var(--f-body);text-align:center}
+.ms-nora > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 62%;filter:brightness(1.18) contrast(1.06)}
+.ms-nora::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,7,7,.75) 0%,rgba(7,7,7,.2) 38%,rgba(7,7,7,0) 55%,rgba(7,7,7,.35) 100%)}
+.ms-nora .mnav{z-index:3}
+.ms-nora .wm{font-family:var(--f-display);font-weight:700;letter-spacing:.14em;font-size:max(12px,1.5cqi)}
+.ms-nora .mbuy{font-size:max(10px,1.2cqi);background:#F5F5F7;color:#0A0A0B;border-radius:999px;padding:.4em 1em;font-weight:600}
+.ms-nora .txt{position:absolute;z-index:2;left:0;right:0;top:11cqi;display:grid;gap:1.3cqi;justify-items:center;padding:0 6cqi}
+.ms-nora h3{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,6.6cqi,80px);letter-spacing:-.045em;line-height:1}
+.ms-nora p{color:#B4B4B9;font-size:max(11px,1.45cqi);max-width:36em}
+.ms-nora .links{display:flex;gap:2.4cqi;align-items:center;font-size:max(11px,1.45cqi)}
+.ms-nora .links a{text-decoration:none;color:#F4A52A}
+.ms-nora .links a.pill{background:#F4A52A;color:#1A1100;border-radius:999px;padding:.5em 1.3em;font-weight:700}
+.ms-nora .mprice{position:absolute;z-index:2;left:4cqi;bottom:3.2cqi;font-size:max(10px,1.2cqi);color:#C9C9CE;letter-spacing:.04em}
+@container (max-width:420px){.ms-nora > img{top:auto;bottom:0;height:62%;object-position:64% 58%}.ms-nora::before{background:linear-gradient(180deg,#070707 38%,rgba(7,7,7,0) 52%,rgba(7,7,7,.4) 100%)}.ms-nora .txt{top:92px;gap:10px}.ms-nora h3{font-size:32px}.ms-nora p{font-size:12.5px}.ms-nora .links{font-size:14px;gap:16px}.ms-nora .mprice{left:20px;bottom:20px;font-size:11px}}
+/* NOCTE */
+.ms-nocte{background:#cfc9be;color:#fff;font-family:var(--f-body)}
+.ms-nocte > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 30%}
+.ms-nocte::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.45),transparent 40%),linear-gradient(180deg,rgba(0,0,0,.25),transparent 25%)}
+.ms-nocte .wm{position:absolute;left:50%;translate:-50% 0;font-family:"Instrument Serif",Georgia,serif;font-size:max(18px,3cqi);letter-spacing:.32em;padding-left:.32em}
+.ms-nocte .mnav ul:last-child{justify-content:flex-end}
+.ms-nocte .cap{position:absolute;z-index:2;left:4cqi;right:4cqi;bottom:4cqi;display:flex;justify-content:space-between;align-items:end;gap:20px}
+.ms-nocte .cap h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(20px,4.4cqi,54px);line-height:1;letter-spacing:-.01em}
+.ms-nocte .cap p{font-size:max(11px,1.4cqi);opacity:.85;margin-top:.6em}
+.ms-nocte .item{text-align:right;font-size:max(10px,1.25cqi);line-height:1.5}
+.ms-nocte .item b{display:block;font-weight:500}
+@container (max-width:420px){.ms-nocte > img{object-position:22% 30%}.ms-nocte .wm{top:42px;font-size:20px}.ms-nocte .cap{flex-direction:column;align-items:flex-start;bottom:28px;left:20px}.ms-nocte .cap h3{font-size:28px}.ms-nocte .item{text-align:left;font-size:12px}}
+/* HAEON — 사진이 화면 전체를 채우는 에디토리얼 스킨케어: 얇은 명조 + 아이보리 빛 */
+.ms-haeon{--hf:"Cormorant Garamond","Nanum Myeongjo",Georgia,serif;background:#EFE8DC;color:#2C2A24;font-family:var(--f-body)}
+html:lang(ko) .ms-haeon{--hf:"Nanum Myeongjo","Cormorant Garamond",serif}
+html:lang(ja) .ms-haeon{--hf:"Shippori Mincho","Cormorant Garamond",serif}
+.ms-haeon > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%;animation:breathe 14s ease-in-out infinite alternate}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.05)}}
+@media (prefers-reduced-motion:reduce){.ms-haeon > img{animation:none}}
+.ms-haeon::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(239,232,220,.94) 0%,rgba(239,232,220,.7) 30%,rgba(239,232,220,0) 58%)}
+.ms-haeon .mnav{z-index:3}
+.ms-haeon .mnav ul{font-size:max(9px,1.05cqi);letter-spacing:.18em;text-transform:uppercase}
+.ms-haeon .wm{position:absolute;left:50%;translate:-50% 0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:max(17px,2.6cqi);letter-spacing:.42em;padding-left:.42em}
+.ms-haeon .bag{font-size:max(9px,1.05cqi);letter-spacing:.18em}
+.ms-haeon .txt{position:absolute;z-index:2;left:6cqi;top:50%;translate:0 -46%;display:grid;gap:2.2cqi;max-width:44%}
+.ms-haeon .eb{font-size:max(9px,1.05cqi);letter-spacing:.24em;text-transform:uppercase;color:#7B7465}
+.ms-haeon h3{font-family:var(--hf);font-weight:300;font-size:clamp(28px,6.2cqi,82px);line-height:1.02;letter-spacing:-.01em}
+html:lang(en) .ms-haeon h3{font-style:italic}
+html:not(:lang(en)) .ms-haeon h3{font-weight:400;font-size:clamp(24px,4.6cqi,60px);line-height:1.3;letter-spacing:-.02em}
+.ms-haeon p{font-size:max(11px,1.3cqi);line-height:1.75;color:#55503F;max-width:30em}
+.ms-haeon a{justify-self:start;display:flex;gap:.8em;align-items:center;font-size:max(10px,1.15cqi);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding-bottom:.5em;border-bottom:1px solid #2C2A24}
+html:not(:lang(en)) .ms-haeon a{letter-spacing:.06em}
+.ms-haeon a::after{content:"→"}
+.ms-haeon .mfoot{position:absolute;z-index:2;left:6cqi;right:4cqi;bottom:3.2cqi;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:max(9px,1.05cqi);letter-spacing:.12em;color:#55503F}
+.ms-haeon ul.tags{display:flex;gap:0}
+.ms-haeon ul.tags li + li::before{content:"";display:inline-block;width:1px;height:.9em;background:#9E9684;margin:0 1.1em;vertical-align:-.1em}
+.ms-haeon .mprice{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+@container (max-width:420px){
+  .ms-haeon > img{object-position:66% 50%}
+  .ms-haeon::before{background:linear-gradient(0deg,rgba(239,232,220,.97) 0%,rgba(239,232,220,.85) 42%,rgba(239,232,220,0) 70%),linear-gradient(180deg,rgba(239,232,220,.8),rgba(239,232,220,0) 22%)}
+  .ms-haeon .wm{top:44px;font-size:18px}.ms-haeon .bag{display:none}
+  .ms-haeon .txt{top:auto;bottom:34px;translate:none;left:22px;right:22px;max-width:none;gap:12px}
+  .ms-haeon h3{font-size:40px}html:not(:lang(en)) .ms-haeon h3{font-size:28px}
+  .ms-haeon p{font-size:12.5px}.ms-haeon a,.ms-haeon .eb{font-size:10.5px}
+  .ms-haeon .mfoot{display:none}
+}
+/* LINEA — 제품 사진 전면 + 유리 스펙 카드, LED의 파란색을 포인트로 */
+.ms-linea{--blue:#3B5BFF;background:#EDE7DE;color:#1D1B18;font-family:"Manrope",var(--cjk),system-ui,sans-serif}
+.ms-linea > img{position:absolute;top:0;left:16%;width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.ms-linea::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(242,237,229,.9) 0%,rgba(242,237,229,.55) 34%,rgba(242,237,229,0) 55%)}
+.ms-linea .mnav{z-index:3}
+.ms-linea .wm{font-weight:800;font-size:max(16px,2.3cqi);letter-spacing:-.05em}
+.ms-linea .wm i{color:var(--blue);font-style:normal}
+.ms-linea .mnav ul{font-weight:600}
+.ms-linea .txt{position:absolute;z-index:2;left:5cqi;top:50%;translate:0 -45%;display:grid;gap:2cqi;max-width:46%}
+.ms-linea .eb{justify-self:start;display:flex;align-items:center;gap:.6em;font-size:max(10px,1.1cqi);font-weight:700;letter-spacing:.04em;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);padding:.45em .9em .45em .7em;border-radius:999px}
+.ms-linea .eb::before{content:"";width:.6em;height:.6em;border-radius:50%;background:var(--blue);box-shadow:0 0 0 .3em rgba(59,91,255,.18)}
+.ms-linea h3{font-weight:800;font-size:clamp(26px,5.6cqi,72px);line-height:.98;letter-spacing:-.055em}
+html:not(:lang(en)) .ms-linea h3{font-family:var(--cjk);font-weight:900;line-height:1.14;letter-spacing:-.05em;font-size:clamp(24px,4.6cqi,58px)}
+.ms-linea p{font-size:max(11px,1.4cqi);color:#4A463E;font-weight:500}
+.ms-linea .acts{display:flex;align-items:center;gap:1.6cqi;flex-wrap:wrap}
+.ms-linea .acts a{background:#1D1B18;color:#fff;border-radius:999px;padding:.8em 1.5em;font-weight:700;font-size:max(11px,1.3cqi);text-decoration:none}
+.ms-linea .card{position:absolute;z-index:2;right:4cqi;bottom:4cqi;width:min(30%,300px);padding:2cqi 2.2cqi;border-radius:2cqi;background:rgba(255,255,255,.5);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border:1px solid rgba(255,255,255,.7);box-shadow:0 20px 50px -20px rgba(60,40,10,.25)}
+.ms-linea .card b{display:block;font-weight:800;font-size:clamp(18px,3.2cqi,40px);letter-spacing:-.05em;line-height:1}
+.ms-linea .card b small{font-size:.45em;letter-spacing:0;margin-left:.2em;color:#6B665B}
+.ms-linea ul.facts{display:grid;gap:.1em;margin-top:1.2cqi}
+.ms-linea ul.facts li{display:flex;align-items:center;gap:.6em;font-size:max(10px,1.15cqi);font-weight:600;padding:.55em 0;border-top:1px solid rgba(29,27,24,.1)}
+.ms-linea ul.facts li::before{content:"";width:.45em;height:.45em;border-radius:50%;background:var(--blue)}
+@container (max-width:420px){
+  .ms-linea > img{left:0;object-position:58% 50%;top:30%;height:52%}
+  .ms-linea::before{background:linear-gradient(180deg,rgba(237,231,222,1) 0%,rgba(237,231,222,.9) 30%,rgba(237,231,222,0) 42%)}
+  .ms-linea .txt{top:86px;translate:none;left:20px;right:20px;max-width:none;gap:10px}
+  .ms-linea h3{font-size:30px}html:not(:lang(en)) .ms-linea h3{font-size:24px}
+  .ms-linea p{display:none}.ms-linea .acts a{font-size:13px}.ms-linea .eb{font-size:11px}
+  .ms-linea .card{left:16px;right:16px;bottom:16px;width:auto;padding:14px 16px;border-radius:18px}
+  .ms-linea .card{padding:12px 14px}.ms-linea .card b{font-size:24px}.ms-linea ul.facts{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px}.ms-linea ul.facts li{font-size:10.5px;border:0;padding:0;white-space:nowrap}
+}
+
+/* product pages */
+.pg .wrap{padding-block:110px;display:grid;gap:64px}
+.pg-head{display:grid;gap:20px;max-width:760px}
+.case{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.case.flip .case-vis{order:2}
+.case-vis{position:relative;background:var(--band-2);border:1px solid var(--band-line);border-radius:22px;padding:40px 24px;display:grid;place-items:center;overflow:hidden;min-width:0;isolation:isolate}
+.case-vis::before{content:"";position:absolute;inset:auto -10% -45% -10%;height:80%;background:radial-gradient(closest-side,color-mix(in srgb,var(--saja) 38%,transparent),transparent);z-index:-1}
+.case-vis .phone{width:240px;height:500px}
+.feed{display:flex;flex-direction:column;animation:feed 70s linear infinite}
+.feed img{width:100%}
+.case-vis:hover .feed{animation-play-state:paused}
+@keyframes feed{to{transform:translateY(-50%)}}
+@media (prefers-reduced-motion:reduce){.feed{animation:none}}
+.clip{position:absolute;right:22px;bottom:26px;width:38%;max-width:200px;border-radius:12px;overflow:hidden;border:3px solid var(--band);box-shadow:0 20px 40px -10px rgba(0,0,0,.7);z-index:6}
+.clip.wide{width:58%;max-width:320px;padding:0;cursor:pointer;background:#000;bottom:22px}
+.clip.wide img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.clip span{position:absolute;left:8px;top:8px;z-index:1;font-family:var(--f-mono);font-size:10px;background:var(--saja);color:var(--saja-ink);padding:2px 7px;border-radius:999px}
+.case-copy{display:grid;gap:18px;min-width:0}
+.tag{display:inline-flex;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;border:1px solid var(--band-line);color:var(--band-dim);padding:5px 11px;border-radius:999px;justify-self:start}
+.case h3{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,3.6vw,46px);letter-spacing:-.035em;line-height:1.05}
+.case .meta{font-family:var(--f-mono);font-size:13px;color:var(--saja)}
+.case p{color:var(--band-dim);max-width:32em}
+.band .btn-line{color:var(--band-ink);justify-self:start}
+@media (max-width:900px){.pg .wrap{padding-block:72px;gap:48px}.case{grid-template-columns:1fr;gap:24px}.case.flip .case-vis{order:0}}
+
+/* why */
+.why .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;padding-block:110px}
+.why-head{display:grid;gap:20px;align-content:start;position:sticky;top:100px}
+.why-item{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:30px 0;border-top:1px solid var(--line)}
+.why-item:last-child{border-bottom:1px solid var(--line)}
+.why-item svg{width:44px;height:44px}
+.why-item h3{font-family:var(--f-display);font-size:clamp(22px,2.3vw,28px);letter-spacing:-.03em;line-height:1.25;margin-bottom:8px}
+.why-item p{color:var(--ink-2);max-width:34em}
+@media (max-width:900px){.why .wrap{grid-template-columns:1fr;gap:28px;padding-block:72px}.why-head{position:static}}
+
+/* pricing */
+.svc .wrap{padding-block:30px 110px;display:grid;gap:48px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{display:flex;flex-direction:column;gap:20px;padding:30px 28px;border-radius:var(--r);border:1px solid var(--line);background:var(--paper);position:relative;min-width:0}
+.plan h3{font-family:var(--f-display);font-size:24px;letter-spacing:-.03em;line-height:1.25}
+.plan .desc{color:var(--ink-2);font-size:15px;min-height:3.3em}
+.price{display:grid;gap:2px;padding-block:18px;border-block:1px solid var(--line)}
+.price b{font-family:var(--f-display);font-weight:800;font-size:clamp(36px,3.6vw,46px);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-size:13px;color:var(--ink-2)}
+.plan ul{display:grid;gap:10px;font-size:15px}
+.plan li{display:grid;grid-template-columns:18px 1fr;gap:10px}
+.plan li::before{content:"";width:18px;height:18px;margin-top:3px;border-radius:50%;border:1.5px solid currentColor;background:radial-gradient(circle,currentColor 0 3px,transparent 3.5px)}
+.plan .btn{margin-top:auto;justify-content:center}
+.plan.pick{background:var(--band);color:var(--band-ink);border-color:var(--band)}
+.plan.pick .desc,.plan.pick .price small{color:var(--band-dim)}
+.plan.pick .price{border-color:var(--band-line)}
+.plan.pick li::before{color:var(--saja)}
+.plan .badge{position:absolute;top:-13px;left:28px;background:var(--saja);color:var(--saja-ink);font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px}
+.plan:not(.pick) .btn{border-color:var(--ink);color:var(--ink)}
+.addon{display:flex;gap:16px;align-items:center;padding:20px 24px;border-radius:var(--r);background:var(--paper-2);font-weight:500}
+.addon .chip{font-family:var(--f-mono);font-size:12px;white-space:nowrap;background:var(--ink);color:var(--paper);padding:5px 10px;border-radius:999px}
+.fine{font-size:13px;color:var(--ink-2);max-width:62em}
+@media (max-width:900px){.svc .wrap{padding-bottom:72px}.plans{grid-template-columns:1fr;gap:28px}.addon{flex-direction:column;align-items:flex-start}}
+
+/* process */
+.proc .wrap{padding-block:30px 110px;display:grid;gap:48px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s;padding:0;margin:0;list-style:none}
+.steps li{counter-increment:s;display:grid;gap:12px;align-content:start;padding-top:22px;border-top:2px solid var(--ink);min-width:0}
+.steps li::before{content:"0" counter(s);font-family:var(--f-mono);font-size:13px;color:var(--ink-2)}
+.steps h3{font-family:var(--f-display);font-size:22px;letter-spacing:-.025em;line-height:1.3}
+.steps p{color:var(--ink-2);font-size:15px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr;gap:32px 16px}.proc .wrap{padding-bottom:72px}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* faq */
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;padding-block:0 110px}
+.faq-list{border-top:1px solid var(--line);min-width:0}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:24px 0;font-weight:700;font-size:18px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-mono);font-size:22px;line-height:1;transition:rotate .2s}
+.faq details[open] summary::after{rotate:45deg}
+.faq details p{padding:0 40px 24px 0;color:var(--ink-2);max-width:40em}
+@media (max-width:900px){.faq .wrap{grid-template-columns:1fr;gap:24px;padding-bottom:72px}}
+
+/* contact */
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;padding-block:110px}
+.contact-head{display:grid;gap:22px;align-content:start}
+.contact-head p{color:var(--band-dim);max-width:30em}
+.mailbox{display:grid;gap:10px;padding:20px 22px;border:1px solid var(--band-line);border-radius:var(--r);background:var(--band-2);justify-self:start;max-width:100%}
+.mailbox-label{font-size:13px;color:var(--band-dim)}
+.mailbox-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.mailbox .mail{font-family:var(--f-display);font-weight:700;font-size:clamp(18px,2vw,22px);overflow-wrap:anywhere}
+.mail{color:var(--band-ink);text-decoration-color:var(--saja);text-underline-offset:4px;user-select:all}
+.copy-mail{border:1px solid var(--band-line);background:transparent;color:var(--band-ink);border-radius:999px;padding:6px 12px;font-size:12px;cursor:pointer;min-height:32px}
+.copy-mail:hover{border-color:var(--saja)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0}
+.field{display:grid;gap:8px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label,.field legend{font-size:13px;font-weight:600;color:var(--band-dim);padding:0}
+.field input,.field select,.field textarea{width:100%;background:var(--band-2);border:1px solid var(--band-line);border-radius:12px;padding:14px;color:var(--band-ink);font-size:16px;color-scheme:dark}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--saja)}
+fieldset.field{border:0;margin:0;padding:0}
+.checks{display:flex;gap:8px;flex-wrap:wrap}
+.checks label{display:flex;align-items:center;gap:8px;border:1px solid var(--band-line);border-radius:999px;padding:9px 14px;cursor:pointer;color:var(--band-ink);font-size:14px;font-weight:500}
+.checks input{accent-color:var(--saja);width:16px;height:16px}
+.form > .btn{grid-column:1/-1;justify-content:center;border:0}
+.err{grid-column:1/-1;color:var(--saja);font-size:14px;min-height:1em}
+.brief{grid-column:1/-1;display:grid;gap:12px;padding:22px;border-radius:var(--r);border:1px solid var(--saja);background:var(--band-2)}
+.brief h3{font-family:var(--f-display);font-size:22px;letter-spacing:-.02em}
+.brief p{font-size:14px;color:var(--band-dim)}
+.brief textarea{width:100%;min-height:200px;background:var(--band);border:1px solid var(--band-line);border-radius:12px;padding:14px;color:var(--band-ink);font-family:var(--f-mono);font-size:13px;line-height:1.6;resize:vertical}
+.brief .btn{min-height:44px}
+.brief-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.brief-to{font-size:14px;color:var(--band-dim);display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr;gap:32px;padding-block:72px}}
+@media (max-width:520px){.form{grid-template-columns:1fr}}
+
+/* footer */
+.foot{border-top:1px solid var(--band-line)}
+.foot .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-block:36px calc(36px + 96px)}
+.foot small{color:var(--band-dim);font-size:13px}
+.foot .mail{color:var(--band-dim)}
+.foot a.top{font-family:var(--f-mono);font-size:12px;color:var(--band-dim)}
+
+/* 하단에 따라붙는 '월 30팀 한정' 바: data/spots.json의 이번 달 숫자로 남은 자리를 보여준다 */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;padding:0 max(12px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));pointer-events:none;transition:translate .35s ease}
+.sticky.off{translate:0 140%}
+.cap-bar{pointer-events:auto;display:flex;align-items:center;gap:18px;width:min(860px,100%);padding:10px 10px 10px 20px;border-radius:999px;background:color-mix(in srgb,#0C0D0D 88%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#F0F1EC;border:1px solid rgba(255,255,255,.08);box-shadow:0 24px 50px -20px rgba(0,0,0,.55)}
+.cap-text{display:grid;gap:2px;min-width:0;flex:1}
+.cap-text b{font-size:14px;font-weight:600;line-height:1.35}
+.cap-text span{font-size:12.5px;color:#B6BAB6;display:flex;align-items:center;gap:10px}
+.cap-meter{flex:none;width:120px;height:4px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
+.cap-meter i{display:block;height:100%;width:0;background:var(--saja);border-radius:4px;transition:width .8s ease}
+.cap-bar .btn{min-height:44px;padding:0 20px;font-size:14px;flex:none}
+.cap-dot{width:7px;height:7px;border-radius:50%;background:#3DDC84;box-shadow:0 0 0 3px rgba(61,220,132,.2);flex:none}
+.cap-bar.full .cap-dot{background:var(--saja);box-shadow:0 0 0 3px rgba(244,165,42,.2)}
+@media (max-width:620px){.cap-bar{border-radius:20px;padding:12px 12px 12px 16px;gap:12px}.cap-text b{font-size:12.5px}.cap-text span{font-size:11.5px}.cap-meter{width:64px}.cap-bar .btn{padding:0 14px;font-size:13px}}
+
+/* viewer */
+.viewer{position:fixed;inset:0;z-index:50;background:rgba(5,6,6,.82);backdrop-filter:blur(6px);display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.viewer-box{width:min(430px,100%);height:100%;display:flex;flex-direction:column;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 40px 80px -20px #000}
+.viewer-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px 12px 18px;background:#0D0E0E;color:#F0F1EC}
+.viewer-bar b{font-family:var(--f-display);font-size:16px}
+.viewer-bar button{border:0;background:#F4A52A;color:#1A1100;font-weight:700;border-radius:999px;padding:8px 14px;cursor:pointer}
+.viewer-scroll{overflow-y:auto;flex:1;overscroll-behavior:contain}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Panda &amp; Saja">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="16" r="10" fill="currentColor"/><circle cx="21" cy="16" r="10" fill="#F4A52A"/><circle cx="21" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span>panda &amp; saja</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#websites" data-t="nav.work"></a>
+      <a href="#pages" data-t="nav.pages"></a>
+      <a href="#pricing" data-t="nav.services"></a>
+      <a href="#faq" data-t="nav.faq"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ko" aria-pressed="false">KO</button>
+      <button type="button" data-lang="ja" aria-pressed="false">JA</button>
+    </div>
+    <a class="btn btn-saja" href="#contact" data-t="nav.cta"></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-media" id="hero-seq">
+      <img class="on" src="assets/work/studio-hero.webp" width="2000" height="1126" alt="" fetchpriority="high">
+      <img src="assets/work/hero-seq-sunglasses.webp" width="2000" height="1126" alt="" loading="lazy">
+      <img src="assets/work/hero-seq-serum.webp" width="2000" height="1126" alt="" loading="lazy">
+      <img src="assets/work/hero-seq-wide.webp" width="2000" height="1126" alt="" loading="lazy">
+    </div>
+    <div class="wrap">
+      <p class="kicker" style="color:#CFCCC4" data-t="hero.eyebrow"></p>
+      <h1 id="hero-title" data-t="hero.title"></h1>
+      <p class="lead" data-t="hero.lead"></p>
+      <div class="hero-cta">
+        <a class="btn btn-saja" href="#contact"><span data-t="hero.cta"></span><span class="arr">→</span></a>
+        <a class="btn btn-line" href="#websites" data-t="hero.cta2"></a>
+      </div>
+      <ul class="hero-pills"><li data-t="hero.s1"></li><li data-t="hero.s2"></li><li data-t="hero.s3"></li></ul>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+  <section class="sc" id="websites" aria-labelledby="sc-title">
+    <div class="wrap">
+      <div class="sc-head">
+        <div>
+          <p class="kicker" data-t="sc.kicker"></p>
+          <h2 class="h2" id="sc-title" data-t="sc.title"></h2>
+        </div>
+        <p class="lead" data-t="sc.lead"></p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Website concepts">
+        <button class="tab" role="tab" id="tab-nora" aria-controls="sc-stage" data-site="nora" aria-selected="true"><i style="background:#0A0A0B;box-shadow:inset 0 0 0 4px #F4A52A"></i><b>NORA</b><span data-t="sc.tab.nora"></span></button>
+        <button class="tab" role="tab" id="tab-nocte" aria-controls="sc-stage" data-site="nocte" aria-selected="false"><i style="background:linear-gradient(135deg,#cfc9be,#3a3530)"></i><b>NOCTE</b><span data-t="sc.tab.nocte"></span></button>
+        <button class="tab" role="tab" id="tab-haeon" aria-controls="sc-stage" data-site="haeon" aria-selected="false"><i style="background:#F3EEE4;box-shadow:inset 0 0 0 4px #9DB08E"></i><b>HAEON</b><span data-t="sc.tab.haeon"></span></button>
+        <button class="tab" role="tab" id="tab-linea" aria-controls="sc-stage" data-site="linea" aria-selected="false"><i style="background:#DDE4F6;box-shadow:inset 0 0 0 4px #151A2E"></i><b>LINEA</b><span data-t="sc.tab.linea"></span></button>
+      </div>
+      <div class="stage" id="sc-stage" role="tabpanel" aria-labelledby="tab-nora">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span id="sc-url">nora.audio</span></div>
+          <div class="screen" id="sc-desk"></div>
+        </div>
+        <div>
+          <div class="phone"><div class="screen" id="sc-phone"></div></div>
+          <p class="phone-cap" data-t="sc.mobile"></p>
+        </div>
+      </div>
+      <div class="sc-foot">
+        <p class="sc-style" id="sc-style"></p>
+        <p class="sc-note" data-t="sc.note"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 쇼케이스 템플릿: 같은 마크업을 PC 화면과 휴대폰 화면에 각각 복제 -->
+  <template id="ms-nora">
+    <div class="ms ms-nora">
+      <img src="assets/work/nora-hero.webp" width="1600" height="1067" alt="NORA One">
+      <div class="mnav"><span class="wm">NORA</span><ul data-tl="nora.nav"></ul><span class="mbuy" data-t="nora.b"></span></div>
+      <div class="txt">
+        <h3 data-t="nora.h"></h3>
+        <p data-t="nora.p"></p>
+        <div class="links"><a class="pill" href="#websites" data-t="nora.b"></a><a href="#websites"><span data-t="nora.a"></span> ›</a></div>
+      </div>
+      <span class="mprice" data-t="nora.price"></span>
+    </div>
+  </template>
+  <template id="ms-nocte">
+    <div class="ms ms-nocte">
+      <img src="assets/work/eyewear-campaign.webp" width="1600" height="900" alt="NOCTE campaign">
+      <div class="mnav"><ul data-tl="nocte.nav"></ul><span class="wm">NOCTE</span><ul><li>Bag (0)</li></ul></div>
+      <div class="cap">
+        <div><h3 data-t="nocte.h"></h3><p data-t="nocte.p"></p></div>
+        <div class="item"><b data-t="nocte.item"></b><span data-t="nocte.price"></span></div>
+      </div>
+    </div>
+  </template>
+  <template id="ms-haeon">
+    <div class="ms ms-haeon">
+      <img src="assets/work/skincare-hero.webp" width="1600" height="900" alt="HAEON serum">
+      <div class="mnav"><ul data-tl="haeon.nav"></ul><span class="wm">HAEON</span><span class="bag">BAG (0)</span></div>
+      <div class="txt">
+        <span class="eb" data-t="haeon.eyebrow"></span>
+        <h3 data-t="haeon.h"></h3>
+        <p data-t="haeon.p"></p>
+        <a href="#websites" data-t="haeon.a"></a>
+      </div>
+      <div class="mfoot"><ul class="tags" data-tl="haeon.tags"></ul><span class="mprice" data-t="haeon.price"></span></div>
+    </div>
+  </template>
+  <template id="ms-linea">
+    <div class="ms ms-linea">
+      <img src="assets/work/linea-hero.webp" width="1600" height="1067" alt="LINEA power bank">
+      <div class="mnav"><span class="wm">linea<i>.</i></span><ul data-tl="linea.nav"></ul></div>
+      <div class="txt">
+        <span class="eb" data-t="linea.eyebrow"></span>
+        <h3 data-t="linea.h"></h3>
+        <p data-t="linea.p"></p>
+        <div class="acts"><a href="#websites" data-t="linea.a"></a></div>
+      </div>
+      <div class="card"><b>10,000<small>mAh</small></b><ul class="facts" data-tl="linea.facts"></ul></div>
+    </div>
+  </template>
+
+  <section class="pg band" id="pages" aria-labelledby="pg-title">
+    <div class="wrap">
+      <div class="pg-head">
+        <p class="kicker" data-t="pg.kicker"></p>
+        <h2 class="h2" id="pg-title" data-t="pg.title"></h2>
+        <p class="lead" data-t="pg.lead"></p>
+      </div>
+      <article class="case">
+        <div class="case-vis">
+          <div class="phone"><div class="screen"><div class="feed" id="feed"></div></div></div>
+          <div class="clip"><span>GIF</span><img src="assets/detail/beanie-04.webp" width="860" height="713" alt="" loading="lazy"></div>
+        </div>
+        <div class="case-copy">
+          <span class="tag" data-t="pg.beanie.tag"></span>
+          <h3>PARTEE<br>Iron Beanie</h3>
+          <p class="meta" data-t="pg.beanie.meta"></p>
+          <p data-t="pg.beanie.d"></p>
+          <button class="btn btn-line" type="button" data-open="beanie"><span data-t="pg.view"></span><span class="arr">↗</span></button>
+        </div>
+      </article>
+      <article class="case flip">
+        <div class="case-vis">
+          <div class="phone"><div class="screen"><div class="feed" id="feed2"></div></div></div>
+          <button type="button" class="clip wide" id="pump-gif" aria-label="Next GIF"><span id="pump-gif-tag">GIF 1/5</span><img src="assets/detail/pump-gif-01.webp" width="640" height="360" alt="OXYBAG Mini Pump GIF"></button>
+        </div>
+        <div class="case-copy">
+          <span class="tag" data-t="pg.pump.tag"></span>
+          <h3>OXYBAG<br>Mini Pump</h3>
+          <p class="meta" data-t="pg.pump.meta"></p>
+          <p data-t="pg.pump.d"></p>
+          <button class="btn btn-line" type="button" data-open="pump"><span data-t="pg.view"></span><span class="arr">↗</span></button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="why-head">
+        <p class="kicker" data-t="why.kicker"></p>
+        <h2 class="h2" id="why-title" data-t="why.title"></h2>
+      </div>
+      <div>
+        <div class="why-item">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="12" y="4" width="20" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="15" y="9" width="14" height="10" rx="1.5" fill="#F4A52A"/><path d="M15 24h14M15 28h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <div><h3 data-t="why.a.t"></h3><p data-t="why.a.d"></p></div>
+        </div>
+        <div class="why-item">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="4" y="9" width="36" height="26" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19 16.5v11l9-5.5z" fill="#F4A52A"/></svg>
+          <div><h3 data-t="why.b.t"></h3><p data-t="why.b.d"></p></div>
+        </div>
+        <div class="why-item">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 22h34M22 5c5 5 7 11 7 17s-2 12-7 17c-5-5-7-11-7-17s2-12 7-17z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="33" cy="12" r="4" fill="#F4A52A"/></svg>
+          <div><h3 data-t="why.c.t"></h3><p data-t="why.c.d"></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc" id="pricing" aria-labelledby="svc-title">
+    <div class="wrap">
+      <div style="display:grid;gap:20px">
+        <p class="kicker" data-t="svc.kicker"></p>
+        <h2 class="h2" id="svc-title" data-t="svc.title"></h2>
+      </div>
+      <div class="plans">
+        <article class="plan pick">
+          <span class="badge" data-t="svc.badge"></span>
+          <h3 data-t="svc.b.t"></h3><p class="desc" data-t="svc.b.d"></p>
+          <div class="price"><b data-t="svc.b.p"></b><small data-t="svc.b.u"></small></div>
+          <ul data-tl="svc.b.l"></ul>
+          <a class="btn btn-saja" href="#contact" data-pick="0" data-t="svc.cta"></a>
+        </article>
+        <article class="plan">
+          <h3 data-t="svc.a.t"></h3><p class="desc" data-t="svc.a.d"></p>
+          <div class="price"><b data-t="svc.a.p"></b><small data-t="svc.a.u"></small></div>
+          <ul data-tl="svc.a.l"></ul>
+          <a class="btn btn-line" href="#contact" data-pick="1" data-t="svc.cta"></a>
+        </article>
+        <article class="plan">
+          <h3 data-t="svc.c.t"></h3><p class="desc" data-t="svc.c.d"></p>
+          <div class="price"><b data-t="svc.c.p"></b><small data-t="svc.c.u"></small></div>
+          <ul data-tl="svc.c.l"></ul>
+          <a class="btn btn-line" href="#contact" data-pick="2" data-t="svc.cta"></a>
+        </article>
+      </div>
+      <p class="addon"><span class="chip">EN · KO · JA</span><span data-t="svc.lang"></span></p>
+      <p class="fine" data-t="svc.fine"></p>
+    </div>
+  </section>
+
+  <section class="proc" aria-labelledby="proc-title">
+    <div class="wrap">
+      <div style="display:grid;gap:20px">
+        <p class="kicker" data-t="proc.kicker"></p>
+        <h2 class="h2" id="proc-title" data-t="proc.title"></h2>
+      </div>
+      <ol class="steps">
+        <li><h3 data-t="proc.1.t"></h3><p data-t="proc.1.d"></p></li>
+        <li><h3 data-t="proc.2.t"></h3><p data-t="proc.2.d"></p></li>
+        <li><h3 data-t="proc.3.t"></h3><p data-t="proc.3.d"></p></li>
+        <li><h3 data-t="proc.4.t"></h3><p data-t="proc.4.d"></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div style="display:grid;gap:20px;align-content:start">
+        <p class="kicker" data-t="faq.kicker"></p>
+        <h2 class="h2" id="faq-title" data-t="faq.title"></h2>
+      </div>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+
+  <section class="contact band" id="contact" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="contact-head">
+        <p class="kicker" data-t="cta.kicker"></p>
+        <h2 class="h2" id="cta-title" data-t="cta.title"></h2>
+        <p data-t="cta.lead"></p>
+        <div class="mailbox">
+          <span class="mailbox-label" data-t="contact.label"></span>
+          <div class="mailbox-row">
+            <a class="mail" data-email href="#"></a>
+            <button type="button" class="copy-mail" data-t="contact.copy"></button>
+          </div>
+        </div>
+      </div>
+      <form class="form" id="brief-form" novalidate>
+        <div class="field"><label for="f-name" data-t="f.name"></label><input id="f-name" name="name" autocomplete="name"></div>
+        <div class="field"><label for="f-mail" data-t="f.contact"></label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
+        <div class="field full"><label for="f-link" data-t="f.link"></label><input id="f-link" name="link" type="url" placeholder="https://"></div>
+        <div class="field"><label for="f-type" data-t="f.type"></label><select id="f-type" name="type" data-to="f.types"></select></div>
+        <div class="field"><label for="f-when" data-t="f.when"></label><select id="f-when" name="when" data-to="f.whens"></select></div>
+        <fieldset class="field full"><legend data-t="f.langs"></legend>
+          <div class="checks">
+            <label><input type="checkbox" id="f-en" name="lang" value="English">English</label>
+            <label><input type="checkbox" id="f-ko" name="lang" value="한국어">한국어</label>
+            <label><input type="checkbox" id="f-ja" name="lang" value="日本語">日本語</label>
+          </div>
+        </fieldset>
+        <div class="field full"><label for="f-msg" data-t="f.msg"></label><textarea id="f-msg" name="msg" data-tp="f.msg.ph"></textarea></div>
+        <p class="err" id="f-err" role="alert"></p>
+        <button class="btn btn-saja" type="submit"><span data-t="f.submit"></span><span class="arr">→</span></button>
+        <div class="brief" id="brief" hidden>
+          <h3 data-t="brief.title"></h3>
+          <p data-t="brief.note"></p>
+          <textarea id="brief-text" readonly aria-label="Brief"></textarea>
+          <div class="brief-actions">
+            <button class="btn btn-saja" type="button" id="brief-copy" data-t="brief.copy"></button>
+            <p class="brief-to"><span data-t="contact.send"></span> <a class="mail" data-email href="#"></a> <button type="button" class="copy-mail" data-t="contact.copy"></button></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot band">
+  <div class="wrap">
+    <a class="logo" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="16" r="10" fill="currentColor"/><circle cx="21" cy="16" r="10" fill="#F4A52A"/></svg><span>panda &amp; saja</span></a>
+    <small><span data-t="foot.tag"></span> <span data-t="foot.note"></span><br><a class="mail" data-email href="#"></a></small>
+    <a class="top" href="#top" data-t="foot.top"></a>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <div class="cap-bar" id="cap-bar">
+    <i class="cap-dot" aria-hidden="true"></i>
+    <div class="cap-text">
+      <b data-t="cap.msg"></b>
+      <span><span id="cap-left"></span><span class="cap-meter" aria-hidden="true"><i id="cap-fill"></i></span></span>
+    </div>
+    <a class="btn btn-saja" href="#contact" data-t="sticky"></a>
+  </div>
+</div>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+  <div class="viewer-box">
+    <div class="viewer-bar"><b id="viewer-title"></b><button type="button" id="viewer-close" data-t="viewer.close"></button></div>
+    <div class="viewer-scroll" id="viewer-scroll"></div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script>
+(function () {
+  var T = window.PS_I18N;
+  var CONTACT_EMAIL = "movk0808@gmail.com";
+  var SITES = { nora: "nora.audio", nocte: "nocte.eyewear", haeon: "haeon.skin", linea: "linea.store" };
+  var PAGES = {
+    beanie: { title: "PARTEE Iron Beanie", file: "beanie", h: [1554,2025,1197,713,502,412,243,1700,1845,412,272,2328,2849,300,140,1994,1734,2341,2844,2265,1968] },
+    pump: { title: "OXYBAG Mini Pump", file: "pump", h: [1462,1452,1465,1020,1557,1312,1456,1392,1336,1196,857,1178,784] }
+  };
+  var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+  var imgTag = function (set, i, lazy) {
+    return '<img src="assets/detail/' + set.file + '-' + pad(i + 1) + '.webp" width="860" height="' + set.h[i] + '" alt=""' + (lazy ? ' loading="lazy"' : '') + ' decoding="async">';
+  };
+  function fillFeed(id, set, n) {
+    var html = "";
+    for (var i = 0; i < n; i++) html += imgTag(set, i, i > 2);
+    document.getElementById(id).innerHTML = html + html;
+  }
+  fillFeed("feed", PAGES.beanie, 8);
+  fillFeed("feed2", PAGES.pump, 7);
+
+  var lang = "en", site = "nora";
+
+  function translate(root, d) {
+    root.querySelectorAll("[data-t]").forEach(function (el) { el.innerHTML = d[el.dataset.t]; });
+    root.querySelectorAll("[data-tl]").forEach(function (el) {
+      el.innerHTML = d[el.dataset.tl].map(function (s) { return "<li>" + s + "</li>"; }).join("");
+    });
+  }
+
+  function showSite(key) {
+    site = key;
+    var tpl = document.getElementById("ms-" + key);
+    ["sc-desk", "sc-phone"].forEach(function (id) {
+      var box = document.getElementById(id);
+      box.innerHTML = "";
+      box.appendChild(tpl.content.cloneNode(true));
+      translate(box, T[lang]);
+    });
+    document.getElementById("sc-url").textContent = SITES[key];
+    document.getElementById("sc-style").textContent = T[lang]["sc.style." + key];
+    document.querySelectorAll(".tab").forEach(function (t) {
+      var on = t.dataset.site === key;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on) document.getElementById("sc-stage").setAttribute("aria-labelledby", t.id);
+    });
+  }
+
+  function setText(l) {
+    lang = l;
+    var d = T[l];
+    document.documentElement.lang = l;
+    document.title = d["meta.title"];
+    document.querySelectorAll("[data-tp]").forEach(function (el) { el.placeholder = d[el.dataset.tp]; });
+    document.querySelectorAll("[data-to]").forEach(function (el) {
+      var keep = el.selectedIndex;
+      el.innerHTML = d[el.dataset.to].map(function (s, i) { return '<option value="' + i + '">' + s + "</option>"; }).join("");
+      el.selectedIndex = keep < 0 ? 0 : keep;
+    });
+    translate(document, d);
+    var tick = "<ul>" + d.ticker.map(function (s) { return "<li>" + s + "</li>"; }).join("") + "</ul>";
+    document.getElementById("ticker").innerHTML = tick + tick;
+    document.getElementById("faq-list").innerHTML = d.faq.map(function (qa) {
+      return "<details><summary>" + qa[0] + "</summary><p>" + qa[1] + "</p></details>";
+    }).join("");
+    document.querySelectorAll("[data-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === l)); });
+    showSite(site);
+    if (!document.getElementById("brief").hidden) buildBrief();
+  }
+
+  function pickLang() {
+    var h = (location.hash || "").slice(1);
+    if (T[h]) return h;
+    try { var s = localStorage.getItem("ps-lang"); if (T[s]) return s; } catch (e) {}
+    var n = (navigator.language || "en").toLowerCase();
+    return n.indexOf("ja") === 0 ? "ja" : n.indexOf("ko") === 0 ? "ko" : "en";
+  }
+  setText(pickLang());
+  document.querySelectorAll("[data-lang]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      try { localStorage.setItem("ps-lang", b.dataset.lang); } catch (e) {}
+      setText(b.dataset.lang);
+    });
+  });
+
+  // 쇼케이스 탭 (좌우 화살표 키 지원)
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { showSite(t.dataset.site); });
+    t.addEventListener("keydown", function (e) {
+      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      var next = tabs[(i + d + tabs.length) % tabs.length];
+      next.focus(); showSite(next.dataset.site);
+    });
+  });
+
+  document.querySelectorAll("[data-pick]").forEach(function (a) {
+    a.addEventListener("click", function () { document.getElementById("f-type").selectedIndex = +a.dataset.pick; });
+  });
+
+  // 상세페이지 전체 보기
+  var viewer = document.getElementById("viewer"), lastFocus = null;
+  function openViewer(key) {
+    var set = PAGES[key];
+    document.getElementById("viewer-title").textContent = set.title;
+    var html = "";
+    for (var i = 0; i < set.h.length; i++) html += imgTag(set, i, i > 1);
+    var sc = document.getElementById("viewer-scroll");
+    sc.innerHTML = html; sc.scrollTop = 0;
+    lastFocus = document.activeElement;
+    viewer.hidden = false;
+    document.body.style.overflow = "hidden";
+    document.getElementById("viewer-close").focus();
+  }
+  function closeViewer() {
+    viewer.hidden = true;
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll("[data-open]").forEach(function (b) { b.addEventListener("click", function () { openViewer(b.dataset.open); }); });
+  document.getElementById("viewer-close").addEventListener("click", closeViewer);
+  viewer.addEventListener("click", function (e) { if (e.target === viewer) closeViewer(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !viewer.hidden) closeViewer(); });
+
+  // 브리프 만들기 (접수 서버 미연결: 복사해서 이메일로 보내는 방식)
+  var form = document.getElementById("brief-form");
+  function buildBrief() {
+    var d = T[lang], L = d["brief.labels"], f = form.elements;
+    var langs = Array.prototype.filter.call(form.querySelectorAll('input[name="lang"]'), function (c) { return c.checked; })
+      .map(function (c) { return c.value; }).join(", ") || "-";
+    var rows = [
+      [L[0], f.name.value.trim()], [L[1], f.email.value.trim()], [L[2], f.link.value.trim() || "-"],
+      [L[3], d["f.types"][f.type.selectedIndex]], [L[4], langs], [L[5], d["f.whens"][f.when.selectedIndex]],
+      [L[6], f.msg.value.trim() || "-"]
+    ];
+    document.getElementById("brief-text").value = d["brief.head"] + "\n" + rows.map(function (r) { return r[0] + ": " + r[1]; }).join("\n");
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var err = document.getElementById("f-err");
+    if (!form.elements.name.value.trim() || !form.elements.email.value.trim()) { err.textContent = T[lang]["f.need"]; return; }
+    err.textContent = "";
+    buildBrief();
+    var b = document.getElementById("brief");
+    b.hidden = false;
+    b.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+  function copyText(btn, text, restKey) {
+    var done = function (key) { btn.textContent = T[lang][key]; setTimeout(function () { btn.textContent = T[lang][restKey]; }, 2400); };
+    try { navigator.clipboard.writeText(text).then(function () { done("brief.copied"); }, function () { done("brief.fail"); }); } catch (e) { done("brief.fail"); }
+  }
+  document.getElementById("brief-copy").addEventListener("click", function () {
+    var ta = document.getElementById("brief-text");
+    ta.select();
+    copyText(this, ta.value, "brief.copy");
+  });
+
+  document.querySelectorAll("[data-email]").forEach(function (a) {
+    a.textContent = CONTACT_EMAIL;
+    a.href = "mailto:" + CONTACT_EMAIL;
+  });
+  document.querySelectorAll(".copy-mail").forEach(function (b) {
+    b.addEventListener("click", function () { copyText(b, CONTACT_EMAIL, "contact.copy"); });
+  });
+
+  // OXYBAG GIF 5개: 5초마다 다음 GIF, 누르면 바로 넘김 (원본: references/oxybag-pump/gif)
+  var gifBox = document.getElementById("pump-gif"), gifImg = gifBox.querySelector("img"), gifTag = document.getElementById("pump-gif-tag"), gifAt = 0;
+  function showGif(i) {
+    gifAt = (i + 5) % 5;
+    gifImg.src = "assets/detail/pump-gif-0" + (gifAt + 1) + ".webp";
+    gifTag.textContent = "GIF " + (gifAt + 1) + "/5 · " + T[lang]["pg.pump.gifs"][gifAt];
+  }
+  showGif(0);
+  gifBox.addEventListener("click", function () { showGif(gifAt + 1); });
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    setInterval(function () { if (!document.hidden) showGif(gifAt + 1); }, 5000);
+  }
+  document.querySelectorAll("[data-lang]").forEach(function (b) { b.addEventListener("click", function () { showGif(gifAt); }); });
+
+  // 메인 시퀀스: 7초마다 다음 장면으로 교차 전환 (움직임 줄이기 설정이면 첫 장면에 고정)
+  var slides = document.querySelectorAll("#hero-seq img");
+  if (slides.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var cur = 0;
+    setInterval(function () {
+      if (document.hidden) return;
+      slides[cur].classList.remove("on");
+      cur = (cur + 1) % slides.length;
+      slides[cur].loading = "eager";
+      slides[cur].classList.add("on");
+    }, 7000);
+  }
+
+  // 월 30팀 한정: data/spots.json(관리자 페이지에서 수정)의 이번 달 계약·완료 수로 남은 자리 계산
+  var spots = null;
+  function monthKey() {
+    var p = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit" }).formatToParts(new Date());
+    return p.find(function (x) { return x.type === "year"; }).value + "-" + p.find(function (x) { return x.type === "month"; }).value;
+  }
+  function renderSpots() {
+    var d = T[lang], el = document.getElementById("cap-left"), bar = document.getElementById("cap-bar");
+    if (!spots) { el.textContent = d["cap.fallback"]; return; }
+    var key = monthKey(), m = spots.months[key] || {}, cap = spots.capacity || 30;
+    var taken = Math.min(cap, (m.contracted || 0) + (m.done || 0)), left = cap - taken;
+    var month = new Intl.DateTimeFormat(lang, { month: "long", timeZone: "Asia/Seoul" }).format(new Date());
+    el.textContent = left > 0 ? d["cap.left"].replace("{month}", month).replace("{n}", left).replace("{cap}", cap) : d["cap.full"];
+    bar.classList.toggle("full", left <= 0);
+    document.getElementById("cap-fill").style.width = (taken / cap * 100) + "%";
+  }
+  renderSpots();
+  fetch("data/spots.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j && j.months) { spots = j; renderSpots(); } }).catch(function () {});
+  document.querySelectorAll("[data-lang]").forEach(function (b) { b.addEventListener("click", renderSpots); });
+
+  // 문의 영역에 들어오면 하단 바 숨김
+  var sticky = document.getElementById("sticky");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (en) { sticky.classList.toggle("off", en.isIntersecting); });
+    }, { threshold: 0.05 }).observe(document.getElementById("contact"));
+  }
+})();
+</script>

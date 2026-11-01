@@ -1,0 +1,7 @@
+{
+  "capacity": 30,
+  "updated": "2026-11-01",
+  "months": {
+    "2026-11": { "inquiries": 0, "consulting": 0, "contracted": 0, "done": 0 }
+  }
+}
